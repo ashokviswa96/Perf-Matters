@@ -1,4 +1,4 @@
-visit https://ashokviswa96.github.io/Perf-Matters/ for the live version of this.
+visit https://ashokviswa96.github.io/Perf-Matters/ for the live version.
 
 # How to run local server and use PageSpeed Insights
 * Download and Install NodeJS from https://nodejs.org and install using all the default options.

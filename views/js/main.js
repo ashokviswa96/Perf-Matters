@@ -540,8 +540,8 @@ window.addEventListener('scroll', function (){
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  //decreased the number of iterations to 21 instead of 200
-  for (var i = 0;i<21;i++){
+  //decreased the number of iterations to 41 instead of 200
+  for (var i = 0;i<41;i++){
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";

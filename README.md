@@ -65,14 +65,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 ```
 The steps I took to improve the number of frames per second are:
-    * reduced the number of iterations from 200 to 20.
-    * Moved the height and width properties to .mover in style.css in order to reduce paint events.
+   * reduced the number of iterations from 200 to 20.
+   * Moved the height and width properties to .mover in style.css in order to reduce paint events.
     * used `document.getElementById` instead of `querySelector`.
     * Added `Backface-visibility: hidden;` property to css to define the visibility of the element.  
-    * Made changes to the `updatePositions` function below as follows:
-        *  moved the `document.body.scrollTop/1250` outside the function and passed it as a parameter.  
-        *  used `getElementsByClassName` instead of `querySelector`.
-    * optimised animation by using `requestAnimationFrame` on scrolling .The callback function `updatePositions` is passed within a anonymous function since it has `phasevar` passed. This is done to overcome the forced syncronous layout when the pizzas are generated at first.
+   * Made changes to the `updatePositions` function below as follows:
+   *  moved the `document.body.scrollTop/1250` outside the function and passed it as a parameter.  
+   *  used `getElementsByClassName` instead of `querySelector`.
+   * optimised animation by using `requestAnimationFrame` on scrolling .The callback function `updatePositions` is passed within a anonymous function since it has `phasevar` passed. This is done to overcome the forced syncronous layout when the pizzas are generated at first.
 
     ```javascript
     window.addEventListener('scroll', function (){

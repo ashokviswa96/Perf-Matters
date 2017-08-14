@@ -551,5 +551,6 @@ document.addEventListener('DOMContentLoaded', function() {
     //changed querySelector to getElementById.
     document.getElementById("movingPizzas1").appendChild(elem);
   }
-  updatePositions();
+   var phasevar =document.body.scrollTop / 1250;
+  updatePositions(phasevar);
 });

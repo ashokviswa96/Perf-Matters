@@ -34,8 +34,8 @@ Hit CTRL-C to stop the server
 
 steps I took to increase the score above 90 are as follows:
   * Eliminated render-blocking CSS:
-      * Added the media="print"  attribute for the external style sheet for print styles.
-      * Inlined the CSS by including it into the HTML document.
+    1 Added the media="print"  attribute for the external style sheet for print styles.
+    2 Inlined the CSS by including it into the HTML document.
   * Eliminated render-blocking JavaScript by adding the HTML async attribute to GA script.
   * optimised the images used on the page .
   * Added media="none" attribute for fonts.
@@ -67,11 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
 The steps I took to improve the number of frames per second are:
    * reduced the number of iterations from 200 to 20.
    * Moved the height and width properties to .mover in style.css in order to reduce paint events.
-    * used `document.getElementById` instead of `querySelector`.
-    * Added `Backface-visibility: hidden;` property to css to define the visibility of the element.  
-   * Made changes to the `updatePositions` function below as follows:
-   *  moved the `document.body.scrollTop/1250` outside the function and passed it as a parameter.  
-   *  used `getElementsByClassName` instead of `querySelector`.
+   * used `document.getElementById` instead of `querySelector`.
+   * Added `Backface-visibility: hidden;` property to css to define the visibility of the element.  
+   * Made changes to the `updatePositions` function  as follows:
+    1.  moved the `document.body.scrollTop/1250` outside the function and passed it as a parameter.  
+    2.  used `getElementsByClassName` instead of `querySelector`.
    * optimised animation by using `requestAnimationFrame` on scrolling .The callback function `updatePositions` is passed within a anonymous function since it has `phasevar` passed. This is done to overcome the forced syncronous layout when the pizzas are generated at first.
 
     ```javascript

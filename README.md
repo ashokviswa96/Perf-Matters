@@ -1,4 +1,4 @@
-visit https://ashokviswa96.github.io/Perf-Matters/ for the live version.
+visit https://ashokviswa96.github.io/Perf-Matters/ for the live version of this.
 
 # How to run local server and use PageSpeed Insights
 * Download and Install NodeJS from https://nodejs.org and install using all the default options.
@@ -34,10 +34,10 @@ Hit CTRL-C to stop the server
 
 steps I took to increase the score above 90 are as follows:
   * Eliminated render-blocking CSS:
-   1. Added the media="print"  attribute for the external style sheet for print styles.
-   2. Inlined the CSS by including it into the HTML document.
+      * Added the media="print"  attribute for the external style sheet for print styles.
+      * Inlined the CSS by including it into the HTML document.
   * Eliminated render-blocking JavaScript by adding the HTML async attribute to GA script.
-  * optimised the images used on the page .
+  * Optimised the images used on the page .
   * Added media="none" attribute for fonts.
 
   After making changes the score increased to 94/100 for mobile and 93/100 for desktop.
@@ -50,8 +50,10 @@ steps I took to increase the score above 90 are as follows:
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  //decreased the number of iterations to 21 instead of 200
-  for (var i = 0;i<21;i++){
+  var screenheight=window.screen.height;
+  var pizzacount = screenheight / s* cols;
+  //calculated the number of pizzas to match the screen size.
+  for (var i = 0;i<pizzacount;i++){
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -61,18 +63,18 @@ document.addEventListener('DOMContentLoaded', function() {
     //changed querySelector to getElementById.
     document.getElementById("movingPizzas1").appendChild(elem);
   }
-  updatePositions();
+  updatePositions(0);
 });
 ```
 The steps I took to improve the number of frames per second are:
-   * reduced the number of iterations from 200 to 20.
-   * Moved the height and width properties to .mover in style.css in order to reduce paint events.
-   * used `document.getElementById` instead of `querySelector`.
-   * Added `Backface-visibility: hidden;` property to css to define the visibility of the element.  
-   * Made changes to the `updatePositions` function  as follows:
-    1.  moved the `document.body.scrollTop/1250` outside the function and passed it as a parameter.  
-    2.  used `getElementsByClassName` instead of `querySelector`.
-   * optimised animation by using `requestAnimationFrame` on scrolling .The callback function `updatePositions` is passed within a anonymous function since it has `phasevar` passed. This is done to overcome the forced syncronous layout when the pizzas are generated at first.
+    * reduced the number of pizzas to match the screen size.
+    * Moved the height and width properties to .mover in style.css in order to reduce paint events.
+    * used `document.getElementById` instead of `querySelector`.
+    * Added `Backface-visibility: hidden;` property to css to define the visibility of the element.  
+    * Made changes to the `updatePositions` function below as follows:
+        *  moved the `document.body.scrollTop/1250` outside the function and passed it as a parameter.  
+        *  used `getElementsByClassName` instead of `querySelector`.
+    * optimised animation by using `requestAnimationFrame` on scrolling .The callback function `updatePositions` is passed within a anonymous function since it has `phasevar` passed. This is done to overcome the forced syncronous layout when the pizzas are generated at first.
 
     ```javascript
     window.addEventListener('scroll', function (){
@@ -91,18 +93,16 @@ The steps I took to improve the number of frames per second are:
 
 ```javascript
 function changePizzaSizes(size) {
-  //changed querySelectorAll to querySelector.
   //moved the variables outside the loop.
-  pizzacont= document.querySelector(".randomPizzaContainer");
-  var dx = determineDx(pizzacont, size);
-  var newwidth = (pizzacont.offsetWidth + dx) + 'px';
   //changed querySelectorAll to getElementsByClassName to improve performance.
+  //moved the variables outside the loop
   var newPizza = document.getElementsByClassName("randomPizzaContainer");
+  var dx = determineDx(newPizza[0], size);
+  var newwidth = (newPizza[0].offsetWidth + dx) + 'px';
   for (var i = 0; i < newPizza.length; i++) {
     newPizza[i].style.width = newwidth;
   }
 }
 ```
-  * moved variable `dx` and `newwidth` outside the loop and used `querySelector` instead of `querySelectorAll`.
+  * moved variable `dx` and `newwidth` outside the loop .
   * created `newPizza` to hold elements with class name `randomPizzaContainer`.
-  * Thus, the Time to resize reduced below 5ms.

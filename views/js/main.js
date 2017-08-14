@@ -541,7 +541,6 @@ document.addEventListener('DOMContentLoaded', function() {
   var s = 256;
   var screenheight=window.screen.height;
   var pizzacount = screenheight / s* cols;
-
   //calculated the number of pizzas to match the screen size.
   for (var i = 0;i<pizzacount;i++){
     var elem = document.createElement('img');

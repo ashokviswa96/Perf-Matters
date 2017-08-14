@@ -34,8 +34,8 @@ Hit CTRL-C to stop the server
 
 steps I took to increase the score above 90 are as follows:
   * Eliminated render-blocking CSS:
-    1 Added the media="print"  attribute for the external style sheet for print styles.
-    2 Inlined the CSS by including it into the HTML document.
+   1. Added the media="print"  attribute for the external style sheet for print styles.
+   2. Inlined the CSS by including it into the HTML document.
   * Eliminated render-blocking JavaScript by adding the HTML async attribute to GA script.
   * optimised the images used on the page .
   * Added media="none" attribute for fonts.
